@@ -113,15 +113,15 @@ elif [ "$choice" == "2" ]; then
 fi
 
 
-if systemctl is-active --quiet hemi2.service; then
-    show "hemi2.service is currently running. Stopping and disabling it..."
-    sudo systemctl stop hemi2.service
-    sudo systemctl disable hemi2.service
+if systemctl is-active --quiet hemi3.service; then
+    show "hemi3.service is currently running. Stopping and disabling it..."
+    sudo systemctl stop hemi3.service
+    sudo systemctl disable hemi3.service
 else
-    show "hemi2.service is not running."
+    show "hemi3.service is not running."
 fi
 
-cat << EOF | sudo tee /etc/systemd/system/hemi2.service > /dev/null
+cat << EOF | sudo tee /etc/systemd/system/hemi3.service > /dev/null
 [Unit]
 Description=Hemi Network popmd Service
 After=network.target
@@ -139,7 +139,7 @@ WantedBy=multi-user.target
 EOF
 
 sudo systemctl daemon-reload
-sudo systemctl enable hemi2.service
-sudo systemctl start hemi2.service
+sudo systemctl enable hemi3.service
+sudo systemctl start hemi3.service
 echo
 show "PoP mining is successfully srtated"
